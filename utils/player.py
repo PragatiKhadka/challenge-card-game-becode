@@ -26,7 +26,7 @@ class Player:
         my_card = self.cards[random.randint(0, len(self.cards) - 1)]
         self.number_of_cards += 1
         self.history.append(my_card)
-        #print(f"{self.name} {self.turn_count} played: {card_num} {card_symbol}")
+        print(f"{self.name} played: {my_card} at {self.turn_count} round")
         
         return my_card
 
@@ -78,24 +78,33 @@ class Deck():
         
         rounds = round(len(self.cards) / len(players))
         for i in range(0, rounds):
-            print("round: ", i)
             for player in players: 
                 if len(self.cards) != 0:
                     card_popped = self.cards.pop()
                     player.cards.append(card_popped)
-    
+        
+        # to check the cards of a player
+        # for player in players:
+        #     print(player)
+        #     for i in range(len(player.cards)):
+        #             print(player.cards[i].__str__())
+
     def __str__(self):
         return (f"{self.cards}") 
 
-new_deck = Deck()
-new_deck.shuffle()
+# new_deck = Deck()
+# new_deck.shuffle()
 
-names = ['Stefan', 'Pragati','Yuri']
-players = []
-for i in range(0, len(names)):
-    players.append(Player(names[i]))
+# names = ['Stefan', 'Pragati','Yuri']
+# players = []
+# for i in range(0, len(names)):
+#     players.append(Player(names[i]))
 
-new_deck.distribute(players)    
+# new_deck.distribute(players)    
+
+# for player in players:
+#     print("check: ",player)
+#     player.play()
 
 
 
