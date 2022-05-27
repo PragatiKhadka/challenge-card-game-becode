@@ -1,7 +1,11 @@
-from player import Deck, Player
+from utils.player import Deck, Player
+import time
 
 class Board:
-
+    """ 
+    This class consists variables for storing values such as players, turn_count, active_cards and history_cards.
+    It also has method to start the game and num_of_players
+    """
     def __init__(self):
         """ Constuctor of the class """
         self.players = []
@@ -10,14 +14,18 @@ class Board:
         self.history_cards = []
 
     def start_game(self):
-        #start the game
+        """
+        start the game by making the deck, shuffling it and distributing it to the players 
+        until the final round
+        """
         my_deck = Deck()
         my_deck.shuffle()
         my_deck.distribute(self.players)  
         
         rounds = round(52 / len(self.players))
         for i in range(0, rounds):
-            print("-----------New Round--------------------------------\n")
+            print("------------------New Round--------------------------\n")
+            time.sleep(5)
             self.active_cards = []
             self.turn_count += 1
             for player in self.players:                
@@ -30,6 +38,9 @@ class Board:
                 print("active cards: ", self.active_cards[i].__str__())
     
     def num_players(self):
+        """
+        This function takes user input where user has to enter the number of players and their names
+        """
         num_of_players = int(input("Please enter number of players: "))
         for i in range(0, num_of_players):
             name = input(f"Please enter name of {i+1} player: ")
